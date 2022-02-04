@@ -5,6 +5,8 @@ import {
   fetchAsyncMovie,
   getAllMovies,
 } from "../../../redux/movies/movieSlice";
+import { Container, Row } from "react-bootstrap";
+import MovieCard from "./MovieCard/MovieCard";
 
 function MovieList() {
   const dispatch = useDispatch();
@@ -12,16 +14,18 @@ function MovieList() {
 
   useEffect(() => {
     dispatch(fetchAsyncMovie());
-    return () => console.log("Clean");
   }, [dispatch]);
-  console.log(data, "data");
 
   return (
     <div>
       <Navbar />
-      {data?.length > 0
-        ? data.map((movie, i) => <div key={i}> {movie.id} </div>)
-        : null}
+      <Container>
+        <Row>
+          {data
+            ? data.map((movie, i) => <MovieCard key={i} {...movie} />)
+            : null}
+        </Row>
+      </Container>
     </div>
   );
 }
