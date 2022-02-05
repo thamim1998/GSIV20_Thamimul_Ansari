@@ -1,7 +1,18 @@
-import React from "react";
-import { Navbar, Container, Form, FormControl, Button } from "react-bootstrap";
+import { useState } from "react";
+import { Navbar, Container } from "react-bootstrap";
+import { useDispatch } from "react-redux";
+import { fetchSearchMovie } from "../../redux/movies/movieSlice";
+import "./Navbar.css"
 
 function NavbarComponent() {
+  const [searchTerm, setSearchTerm] = useState("");
+  const dispatch = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    dispatch(fetchSearchMovie(searchTerm));
+  };
+
   return (
     <div>
       <Navbar bg="light" expand="lg">
@@ -9,15 +20,17 @@ function NavbarComponent() {
           <Navbar.Brand href="#">Movie Details</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
-            <Form className="d-flex">
-              <FormControl
-                type="search"
-                placeholder="Search"
-                className="me-2"
-                aria-label="Search"
+            <form onSubmit={(e) => handleSubmit(e)}>
+              <input
+                type="text"
+                className="movie-input"
+                placeholder="Search...."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
               />
-              <Button variant="outline-success">Search</Button>
-            </Form>
+
+              <button className="search-button"> Search </button>
+            </form>
           </Navbar.Collapse>
         </Container>
       </Navbar>

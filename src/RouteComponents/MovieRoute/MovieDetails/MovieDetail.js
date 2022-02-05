@@ -9,7 +9,7 @@ function MovieDetail({ match }) {
   const movieId = match.params.id;
   const data = useSelector(getAllMovies);
 
-  const movieDetails = data.find((o) => o.id == movieId);
+  const movieDetails = data.find((movie) => movie.id == movieId);
 
   return (
     <Container>
