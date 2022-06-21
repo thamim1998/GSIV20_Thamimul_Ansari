@@ -17,7 +17,7 @@ function NavbarComponent() {
     <div>
       <Navbar bg="light" expand="lg">
         <Container fluid>
-          <Navbar.Brand href="#">Movie Details</Navbar.Brand>
+          <Navbar.Brand href="#">Search Movies</Navbar.Brand>
           <Navbar.Toggle aria-controls="navbarScroll" />
           <Navbar.Collapse id="navbarScroll">
             <form onSubmit={(e) => handleSubmit(e)}>
